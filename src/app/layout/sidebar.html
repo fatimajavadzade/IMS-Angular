@@ -1,0 +1,88 @@
+@let isCollapsed = collapsed();
+
+<aside
+  [class]="
+    'relative hidden h-screen shrink-0 flex-col border-r border-ink-100 bg-white transition-[width] duration-200 md:flex dark:border-white/10 dark:bg-ink-900 ' +
+    (isCollapsed ? 'w-20' : 'w-64')
+  "
+>
+  <button
+    type="button"
+    (click)="toggleCollapsed()"
+    [attr.aria-label]="isCollapsed ? 'Sidebar-ı aç' : 'Sidebar-ı yığ'"
+    [attr.title]="isCollapsed ? 'Sidebar-ı aç' : 'Sidebar-ı yığ'"
+    class="absolute -right-3 top-6 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-ink-100 bg-white text-ink-500 shadow-sm transition hover:text-ink-900 dark:border-white/10 dark:bg-ink-900 dark:text-ink-400 dark:hover:text-ink-100"
+  >
+    <lucide-angular [img]="isCollapsed ? ChevronsRight : ChevronsLeft" [size]="14" />
+  </button>
+
+  <div
+    [class]="
+      'overflow-hidden border-b border-ink-100 px-5 py-5 dark:border-white/10 ' +
+      (isCollapsed ? 'px-3 text-center' : '')
+    "
+  >
+    @if (isCollapsed) {
+      <p class="font-display text-lg font-bold text-brand-800 dark:text-brand-300">IMS</p>
+    } @else {
+      <p class="font-display text-lg font-bold text-brand-800 dark:text-brand-300">IMS Sistem</p>
+      <p class="text-xs text-ink-500 dark:text-ink-400">Anbar İdarəetmə</p>
+    }
+  </div>
+
+  <div class="px-3 pt-4">
+    <a
+      routerLink="/products"
+      title="Yeni Məhsul"
+      [class]="
+        'flex w-full items-center justify-center gap-2 rounded-lg bg-brand-700 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-brand-600 dark:hover:bg-brand-500 ' +
+        (isCollapsed ? 'px-0' : 'px-4')
+      "
+    >
+      <lucide-angular [img]="Plus" [size]="16" class="shrink-0" />
+      @if (!isCollapsed) {
+        <span>Yeni Məhsul</span>
+      }
+    </a>
+  </div>
+
+  <nav class="flex-1 overflow-y-auto px-3 py-4">
+    <div class="flex flex-col gap-1">
+      @for (link of links; track link.to) {
+        <a
+          [routerLink]="link.to"
+          routerLinkActive="border-brand-700 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-500/10 dark:text-brand-300"
+          [routerLinkActiveOptions]="{ exact: false }"
+          [attr.title]="isCollapsed ? link.label : null"
+          [class]="
+            'flex items-center gap-3 rounded-lg border-l-[3px] border-transparent px-3 py-2 text-sm font-medium text-ink-500 transition hover:bg-ink-100/70 hover:text-ink-900 dark:text-ink-400 dark:hover:bg-white/5 dark:hover:text-ink-100 ' +
+            (isCollapsed ? 'justify-center px-0' : '')
+          "
+        >
+          <lucide-angular [img]="link.icon" [size]="16" class="shrink-0" />
+          @if (!isCollapsed) {
+            <span>{{ link.label }}</span>
+          }
+        </a>
+      }
+    </div>
+  </nav>
+
+  <div class="mt-auto border-t border-ink-100 px-3 py-4 dark:border-white/10">
+    <a
+      routerLink="/login"
+      (click)="auth.logout()"
+      [attr.aria-label]="'Çıxış'"
+      title="Çıxış"
+      [class]="
+        'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-bad-700 hover:bg-bad-100/60 dark:text-bad-400 dark:hover:bg-bad-500/10 ' +
+        (isCollapsed ? 'justify-center px-0' : '')
+      "
+    >
+      <lucide-angular [img]="LogOut" [size]="16" class="shrink-0" />
+      @if (!isCollapsed) {
+        <span>Çıxış</span>
+      }
+    </a>
+  </div>
+</aside>

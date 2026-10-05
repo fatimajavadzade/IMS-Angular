@@ -1,0 +1,78 @@
+<div class="flex min-h-screen items-center justify-center bg-ink-900 px-4 dark:bg-ink-950">
+  <div
+    class="w-full max-w-md rounded-xl2 bg-white p-8 shadow-xl dark:bg-ink-900 dark:ring-1 dark:ring-white/10"
+  >
+    <div class="mb-8 flex items-center gap-2 text-brand-700 dark:text-brand-400">
+      <lucide-angular [img]="Boxes" [size]="28" />
+      <span class="font-display text-xl font-semibold">IMS</span>
+    </div>
+
+    <h1 class="mb-1 text-2xl font-semibold text-ink-900 dark:text-ink-100">Qeydiyyat</h1>
+
+    <p class="mb-6 text-sm text-ink-500 dark:text-ink-400">Yeni hesab yaradın.</p>
+
+    <form>
+      <label class="mb-4 block">
+        <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+          Telefon nömrəsi <span class="text-bad-700 dark:text-bad-400">*</span>
+        </span>
+        <div
+          class="flex items-center gap-2 rounded-lg border border-ink-100 bg-ink-100/40 px-3 focus-within:border-brand-500 dark:border-white/10 dark:bg-white/5"
+        >
+          <lucide-angular [img]="Phone" [size]="16" class="text-ink-300 dark:text-ink-500" />
+          <app-input
+            type="text"
+            placeholder="+994 50 123 45 67"
+            className="border-0 bg-transparent px-0"
+          />
+        </div>
+      </label>
+
+      <label class="mb-4 block">
+        <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+          E-poçt <span class="text-bad-700 dark:text-bad-400">*</span>
+        </span>
+        <div
+          class="flex items-center gap-2 rounded-lg border border-ink-100 bg-ink-100/40 px-3 focus-within:border-brand-500 dark:border-white/10 dark:bg-white/5"
+        >
+          <lucide-angular [img]="Mail" [size]="16" class="text-ink-300 dark:text-ink-500" />
+          <app-input
+            type="email"
+            placeholder="ad@sirket.com"
+            className="border-0 bg-transparent px-0"
+          />
+        </div>
+      </label>
+
+      <label class="mb-6 block">
+        <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+          Şifrə <span class="text-bad-700 dark:text-bad-400">*</span>
+        </span>
+        <div
+          class="flex items-center gap-2 rounded-lg border border-ink-100 bg-ink-100/40 px-3 focus-within:border-brand-500 dark:border-white/10 dark:bg-white/5"
+        >
+          <lucide-angular [img]="Lock" [size]="16" class="text-ink-300 dark:text-ink-500" />
+          <app-input
+            type="password"
+            placeholder="••••••••"
+            className="border-0 bg-transparent px-0"
+          />
+        </div>
+      </label>
+
+      <a
+        routerLink="/login"
+        class="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-brand-600 dark:hover:bg-brand-500"
+      >
+        Qeydiyyatdan keç
+      </a>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-ink-500 dark:text-ink-400">
+      Artıq hesabınız var?
+      <a routerLink="/login" class="font-medium text-brand-700 hover:underline dark:text-brand-400">
+        Daxil olun
+      </a>
+    </p>
+  </div>
+</div>

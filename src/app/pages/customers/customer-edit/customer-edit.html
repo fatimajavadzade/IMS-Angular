@@ -1,0 +1,122 @@
+<div class="mx-auto max-w-xl">
+  <app-page-header title="Müştərini redaktə et" subtitle="Məlumatları yeniləyin." />
+
+  @if (serverError()) {
+    <div
+      class="mb-4 rounded-lg border border-bad-700/30 bg-bad-100 px-3 py-2 text-sm text-bad-700 dark:border-bad-500/30 dark:bg-bad-500/10 dark:text-bad-400"
+    >
+      {{ serverError() }}
+    </div>
+  }
+
+  @if (loading()) {
+    <div
+      class="rounded-xl2 border border-ink-100 bg-white p-6 text-center text-ink-400 dark:border-white/10 dark:bg-ink-900"
+    >
+      Yüklənir…
+    </div>
+  } @else {
+    <div
+      class="rounded-xl2 border border-ink-100 bg-white p-6 dark:border-white/10 dark:bg-ink-900"
+    >
+      <div class="space-y-4">
+        <label class="block">
+          <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+            Şirkət adı
+          </span>
+          <app-input
+            [value]="companyName()"
+            (valueChange)="companyName.set($event)"
+            [error]="!!fieldErrors()['companyName']"
+          />
+          @if (fieldErrors()['companyName']) {
+            <p class="mt-1 text-xs text-bad-700 dark:text-bad-400">
+              {{ fieldErrors()['companyName'] }}
+            </p>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">VÖEN</span>
+          <app-input
+            [value]="voen()"
+            (valueChange)="voen.set($event)"
+            [error]="!!fieldErrors()['voen']"
+          />
+          @if (fieldErrors()['voen']) {
+            <p class="mt-1 text-xs text-bad-700 dark:text-bad-400">{{ fieldErrors()['voen'] }}</p>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+            Əlaqədar şəxs
+          </span>
+          <app-input
+            [value]="contactPerson()"
+            (valueChange)="contactPerson.set($event)"
+            [error]="!!fieldErrors()['contactPerson']"
+          />
+          @if (fieldErrors()['contactPerson']) {
+            <p class="mt-1 text-xs text-bad-700 dark:text-bad-400">
+              {{ fieldErrors()['contactPerson'] }}
+            </p>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+            Telefon
+          </span>
+          <app-input
+            [value]="phone()"
+            (valueChange)="phone.set($event)"
+            [error]="!!fieldErrors()['phone']"
+          />
+          @if (fieldErrors()['phone']) {
+            <p class="mt-1 text-xs text-bad-700 dark:text-bad-400">{{ fieldErrors()['phone'] }}</p>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+            E-poçt
+          </span>
+          <app-input
+            type="email"
+            [value]="email()"
+            (valueChange)="email.set($event)"
+            [error]="!!fieldErrors()['email']"
+          />
+          @if (fieldErrors()['email']) {
+            <p class="mt-1 text-xs text-bad-700 dark:text-bad-400">{{ fieldErrors()['email'] }}</p>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300">
+            Ünvan
+          </span>
+          <app-input [value]="address()" (valueChange)="address.set($event)" />
+        </label>
+      </div>
+
+      <div class="mt-6 flex items-center gap-3">
+        <button
+          type="button"
+          (click)="submit()"
+          [disabled]="submitting()"
+          class="flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-600 dark:hover:bg-brand-500"
+        >
+          {{ submitting() ? 'Yadda saxlanılır…' : 'Yadda saxla' }}
+        </button>
+        <a
+          routerLink="/customers"
+          class="text-sm font-medium text-ink-500 hover:underline dark:text-ink-400"
+        >
+          Ləğv et
+        </a>
+      </div>
+    </div>
+  }
+</div>
