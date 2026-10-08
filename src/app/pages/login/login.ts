@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule, Boxes, Lock, Mail } from 'lucide-angular';
-import { InputComponent } from '../../ui/input';
 import { AuthService } from '../../core/auth.service';
 import { toFieldErrors } from '../../core/zod-errors';
 import { loginSchema } from './login.schema';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +16,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class LoginComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private toast = inject(HotToastService);
 
   readonly email = signal('');
   readonly password = signal('');
@@ -57,10 +58,12 @@ export class LoginComponent {
     this.auth.login(result.data.email, result.data.password).subscribe({
       next: () => {
         this.submitting.set(false);
+        this.toast.success('Login successful!');
         this.router.navigateByUrl('/dashboard');
       },
       error: (err) => {
         this.submitting.set(false);
+        this.toast.error('Invalid email or password');
         this.serverError.set(err.error?.message ?? 'Daxil olmaq mümkün olmadı.');
       },
     });

@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(), //enable global error handling
     provideRouter(routes, withComponentInputBinding()), //enables routing
-    provideHotToastConfig(), //enables toast notifications (hele saytda yoxdur elave edilecek)
     provideHttpClient(withInterceptors([authInterceptor])), //enables http through auth interceptor
+    provideHotToastConfig({ theme: 'toast' }),
   ],
 };

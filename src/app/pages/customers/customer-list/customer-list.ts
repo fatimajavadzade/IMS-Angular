@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Plus, Pencil, Trash2, Search } from 'lucide-angular';
+import { HotToastService } from '@ngxpert/hot-toast';
 import { PageHeaderComponent } from '../../../ui/page-header';
 import { InputComponent } from '../../../ui/input';
 import { ConfirmDialogComponent } from '../../../ui/confirm-dialog';
@@ -24,6 +25,8 @@ const PAGE_SIZE = 10;
 })
 export class CustomerListComponent {
   private readonly customerService = inject(CustomerService);
+  private readonly toast = inject(HotToastService);
+
   private searchDebounce?: ReturnType<typeof setTimeout>;
 
   readonly customers = signal<Customer[]>([]);
@@ -54,6 +57,7 @@ export class CustomerListComponent {
 
   goToPage(next: number): void {
     if (next < 0 || next >= this.totalPages()) return;
+
     this.page.set(next);
     this.load();
   }
@@ -70,15 +74,18 @@ export class CustomerListComponent {
 
   confirmDelete(): void {
     const customer = this.customerPendingDelete();
+
     if (!customer) return;
 
     this.customerService.delete(customer.id).subscribe({
       next: () => {
         this.customerPendingDelete.set(null);
+        this.toast.success('Müştəri uğurla silindi!');
         this.load();
       },
       error: () => {
         this.customerPendingDelete.set(null);
+        this.toast.error('Müştəri silinərkən xəta baş verdi.');
         this.errorMessage.set('Müştəri silinərkən xəta baş verdi.');
       },
     });
@@ -96,6 +103,7 @@ export class CustomerListComponent {
         this.loading.set(false);
       },
       error: () => {
+        this.toast.error('Müştərilər yüklənərkən xəta baş verdi.');
         this.errorMessage.set('Müştərilər yüklənərkən xəta baş verdi. Backend işləyirmi?');
         this.loading.set(false);
       },

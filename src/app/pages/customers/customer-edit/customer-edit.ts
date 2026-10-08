@@ -6,6 +6,7 @@ import { InputComponent } from '../../../ui/input';
 import { CustomerService } from '../customer.service';
 import { customerSchema } from '../customer.schema';
 import { toFieldErrors } from '../../../core/zod-errors';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-customer-edit',
@@ -19,6 +20,7 @@ export class CustomerEditComponent implements OnInit {
 
   private readonly customerService = inject(CustomerService);
   private readonly router = inject(Router);
+  private readonly toast = inject(HotToastService);
 
   readonly companyName = signal('');
   readonly voen = signal('');
@@ -48,6 +50,7 @@ export class CustomerEditComponent implements OnInit {
       error: () => {
         this.serverError.set('Müştəri tapılmadı və ya yüklənə bilmədi.');
         this.loading.set(false);
+        this.toast.error('Müştəri yüklənə bilmədi.');
       },
     });
   }
@@ -73,9 +76,16 @@ export class CustomerEditComponent implements OnInit {
     this.submitting.set(true);
 
     this.customerService.update(Number(this.id()), result.data).subscribe({
-      next: () => this.router.navigateByUrl('/customers'),
+      next: () => {
+        this.toast.success('Müştəri uğurla yeniləndi!');
+        this.router.navigateByUrl('/customers');
+      },
+
       error: (err) => {
         this.submitting.set(false);
+
+        this.toast.error('Müştəri yenilənərkən xəta baş verdi.');
+
         this.serverError.set(err.error?.message ?? 'Müştəri yenilənərkən xəta baş verdi.');
       },
     });

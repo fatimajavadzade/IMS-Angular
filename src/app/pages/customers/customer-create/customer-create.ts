@@ -6,7 +6,7 @@ import { InputComponent } from '../../../ui/input';
 import { CustomerService } from '../customer.service';
 import { customerSchema } from '../customer.schema';
 import { toFieldErrors } from '../../../core/zod-errors';
-import z from 'zod';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-customer-create',
@@ -18,6 +18,7 @@ import z from 'zod';
 export class CustomerCreateComponent {
   private readonly customerService = inject(CustomerService);
   private readonly router = inject(Router);
+  private readonly toast = inject(HotToastService);
 
   readonly companyName = signal('');
   readonly voen = signal('');
@@ -53,9 +54,16 @@ export class CustomerCreateComponent {
     this.submitting.set(true);
 
     this.customerService.create(result.data).subscribe({
-      next: () => this.router.navigateByUrl('/customers'),
+      next: () => {
+        this.toast.success('Müştəri uğurla yaradıldı!');
+        this.router.navigateByUrl('/customers');
+      },
+
       error: (err) => {
         this.submitting.set(false);
+
+        this.toast.error('Müştəri yaradılarkən xəta baş verdi.');
+
         this.serverError.set(err.error?.message ?? 'Müştəri yaradılarkən xəta baş verdi.');
       },
     });
