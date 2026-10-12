@@ -11,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(), //enable global error handling
     provideRouter(routes, withComponentInputBinding()), //enables routing
     provideHttpClient(withInterceptors([authInterceptor])), //enables http through auth interceptor
-    provideHotToastConfig({ theme: 'toast' }),
+    provideHotToastConfig({ theme: 'toast', position: 'top-right' }), //enables toast notifications
   ],
 };

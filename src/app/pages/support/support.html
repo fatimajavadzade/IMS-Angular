@@ -1,0 +1,156 @@
+<div class="min-h-screen bg-ink-900 px-4 py-8 text-ink-900 dark:bg-ink-950 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex items-center gap-3 text-brand-700 dark:text-brand-400">
+        <lucide-angular [img]="Boxes" [size]="28" />
+        <span class="font-display text-xl font-semibold">IMS</span>
+      </div>
+
+      <a
+        routerLink="/login"
+        class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+      >
+        Geri dön
+        <lucide-angular [img]="ArrowRight" [size]="16" />
+      </a>
+    </header>
+
+    <main class="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+      <section class="rounded-[28px] bg-white p-6 shadow-xl shadow-ink-950/20 ring-1 ring-ink-100 dark:bg-ink-900 dark:ring-white/10 sm:p-8">
+        <div class="mb-8 flex items-start gap-4">
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300"
+          >
+            <lucide-angular [img]="Headphones" [size]="24" />
+          </div>
+
+          <div>
+            <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-700 dark:text-brand-300">
+              Dəstək mərkəzi
+            </p>
+            <h1 class="font-display text-3xl font-bold text-ink-900 dark:text-ink-100">
+              Kömək üçün burdayıq
+            </h1>
+          </div>
+        </div>
+
+        <p class="max-w-2xl text-base text-ink-600 dark:text-ink-300">
+          Sistemlə bağlı sual, texniki problem və ya sifarişlə əlaqəli yardım istəyirsinizsə,
+          bizim komandamız sizə ən qısa zamanda cavab verir.
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          <article class="rounded-2xl border border-ink-100 bg-ink-50 p-4 dark:border-white/10 dark:bg-white/5">
+            <div class="mb-3 inline-flex rounded-xl bg-brand-100 p-2 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">
+              <lucide-angular [img]="MessageSquareText" [size]="18" />
+            </div>
+            <h2 class="mb-2 text-base font-semibold text-ink-900 dark:text-ink-100">Canlı chat</h2>
+            <p class="text-sm text-ink-500 dark:text-ink-400">09:00–18:00</p>
+          </article>
+
+          <article class="rounded-2xl border border-ink-100 bg-ink-50 p-4 dark:border-white/10 dark:bg-white/5">
+            <div class="mb-3 inline-flex rounded-xl bg-brand-100 p-2 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">
+              <lucide-angular [img]="Mail" [size]="18" />
+            </div>
+            <h2 class="mb-2 text-base font-semibold text-ink-900 dark:text-ink-100">E-poçt</h2>
+            <p class="text-sm text-ink-500 dark:text-ink-400">support@ims.az</p>
+          </article>
+
+          <article class="rounded-2xl border border-ink-100 bg-ink-50 p-4 dark:border-white/10 dark:bg-white/5">
+            <div class="mb-3 inline-flex rounded-xl bg-brand-100 p-2 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">
+              <lucide-angular [img]="Phone" [size]="18" />
+            </div>
+            <h2 class="mb-2 text-base font-semibold text-ink-900 dark:text-ink-100">Telefon</h2>
+            <p class="text-sm text-ink-500 dark:text-ink-400">+994 12 555 44 33</p>
+          </article>
+        </div>
+
+        <div class="mt-8 rounded-2xl border border-brand-100 bg-brand-50/70 p-5 dark:border-brand-500/20 dark:bg-brand-500/10">
+          <div class="mb-3 flex items-center gap-2 text-brand-700 dark:text-brand-300">
+            <lucide-angular [img]="ShieldCheck" [size]="18" />
+            <span class="text-sm font-semibold uppercase tracking-[0.12em]">Dəstək standartı</span>
+          </div>
+
+          <ul class="space-y-3 text-sm text-ink-700 dark:text-ink-300">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 h-2 w-2 rounded-full bg-brand-600"></span>
+              Sorğunuz qəbul edildikdən sonra 1 iş saatı ərzində ilkin cavab alırsınız.
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 h-2 w-2 rounded-full bg-brand-600"></span>
+              Hər növ texniki problem və ya sistem konfiqurasiyası üçün fərdi dəstək təmin edirik.
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 h-2 w-2 rounded-full bg-brand-600"></span>
+              Məlumatlarınızın təhlükəsizliyi və məxfilik siyasəti bizim prioritetlərimizdən biridir.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="rounded-[28px] bg-ink-900 p-6 text-white shadow-xl shadow-ink-950/30 ring-1 ring-white/10 dark:bg-ink-900 sm:p-8">
+        <div class="mb-6 flex items-center gap-3">
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/15 text-brand-300">
+            <lucide-angular [img]="MessageSquareText" [size]="20" />
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] text-brand-300">Sual göndərin</p>
+            <h2 class="text-xl font-semibold text-white">Dəstək sorğusu</h2>
+          </div>
+        </div>
+
+        <form class="space-y-4">
+          <label class="block">
+            <span class="mb-1.5 block text-sm text-ink-300">Adınız</span>
+            <input
+              type="text"
+              placeholder="Ad və soyad"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-ink-400 outline-none transition focus:border-brand-400"
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-1.5 block text-sm text-ink-300">E-poçt</span>
+            <input
+              type="email"
+              placeholder="ad@sirket.com"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-ink-400 outline-none transition focus:border-brand-400"
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-1.5 block text-sm text-ink-300">Mövzu</span>
+            <input
+              type="text"
+              placeholder="Məsələn: Hesab giriş problemi"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-ink-400 outline-none transition focus:border-brand-400"
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-1.5 block text-sm text-ink-300">Mesaj</span>
+            <textarea
+              rows="5"
+              placeholder="Problemi və ya sualınızı detallı izah edin..."
+              class="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-ink-400 outline-none transition focus:border-brand-400"
+            ></textarea>
+          </label>
+
+          <button
+            type="button"
+            class="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-500"
+          >
+            Sorğunu göndər
+            <lucide-angular [img]="ArrowRight" [size]="16" />
+          </button>
+        </form>
+
+        <div class="mt-6 flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-ink-300">
+          <lucide-angular [img]="Clock3" [size]="16" class="text-brand-300" />
+          <span>İş saatları: Bazar ertəsi - Cümə, 09:00 – 18:00</span>
+        </div>
+      </aside>
+    </main>
+  </div>
+</div>
+
